@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Berhadiah Menarik!</title>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .konten-utama h1 {
+            color: #333;
+            font-size: 28px;
+        }
+
+        .konten-utama p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .konten-utama button {
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .konten-utama button:hover {
+            transform: scale(1.05);
+            background-color: #218838;
+        }
+
+        /* Mengatur Efek Jumpscare Fullscreen */
+        #jumpscare-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        }
+
+        #foto-hantu {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memaksa gambar hantu penuh di layar komputer/HP */
+        }
+
+        /* Kelas untuk menyembunyikan elemen sebelum diklik */
+        .tersembunyi {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="konten-utama">
+        <h1>🎁 Selamat! Kamu Terpilih 🎁</h1>
+        <p>Kamu memenangkan undian mingguan. Klik tombol di bawah untuk klaim hadiahmu!</p>
+        <button id="btn-hadiah">Klaim Hadiah Gratis</button>
+    </div>
+
+    <div id="jumpscare-container" class="tersembunyi">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoscWgYkmXiMjGlw3a8OiZPlyHH28qZLNkkg&s" alt="Jumpscare" id="foto-hantu">
+        
+        <audio id="suara-setan" src="https://www.soundjay.com/human/sounds/shriek-1.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        document.getElementById('btn-hadiah').addEventListener('click', function() {
+            const jumpscare = document.getElementById('jumpscare-container');
+            const suara = document.getElementById('suara-setan');
+
+            // 1. Memunculkan gambar hantu secara instan
+            jumpscare.classList.remove('tersembunyi');
+
+            // 2. Memaksa volume suara ke tingkat paling maksimal (1.0)
+            suara.volume = 1.0;
+
+            // 3. Memutar suara jeritan kencang
+            suara.play().catch(function(error) {
+                console.log("Suara terblokir proteksi browser, butuh interaksi user nyata:", error);
+            });
+        });
+    </script>
+</body>
+</html>
